@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 using WiredBrainCoffee.StorageApp.Entities;
 
 namespace WiredBrainCoffee.StorageApp.Repositories
@@ -32,6 +34,11 @@ namespace WiredBrainCoffee.StorageApp.Repositories
         public void Save()
         {
             _dbContext.SaveChanges();
+        }
+
+        public IEnumerable<T> GetAll()
+        {
+            return _dbSet.OrderBy(item => item.Id).ToList();
         }
     }
 }
